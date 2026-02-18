@@ -102,7 +102,7 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                   <a href={CONTACT_EMAIL}>
                     <Button
                       size="sm"
-                      className="w-full justify-start bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 hover:brightness-110"
+                      className="w-full justify-start bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 transition-all duration-200 hover:-translate-y-1 hover:scale-[1.01] hover:brightness-110 hover:shadow-[0_14px_30px_-12px_rgba(56,189,248,0.95)]"
                     >
                       <Mail className="mr-2 h-4 w-4" />
                       {CONTACT_EMAIL_LABEL}
@@ -131,7 +131,7 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="w-full justify-start border-slate-600 bg-slate-900/70 text-white hover:border-cyan-300/50 hover:bg-slate-900"
+                          className="w-full justify-start border-slate-600 bg-slate-900/70 text-white transition-all duration-200 hover:-translate-y-1 hover:scale-[1.01] hover:border-cyan-300 hover:bg-cyan-400/10 hover:text-cyan-100 hover:shadow-[0_14px_30px_-14px_rgba(34,211,238,0.95)]"
                         >
                           {icon}
                           {action.label}
@@ -253,3 +253,4 @@ const ContactSection = ({ className }: ContactSectionProps) => {
 };
 
 export default ContactSection;
+
