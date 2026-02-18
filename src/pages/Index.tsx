@@ -114,7 +114,7 @@ const Index = () => {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setRoleIndex((prev) => (prev + 1) % ROTATING_ROLES.length);
-    }, 2200);
+    }, 4800);
 
     return () => {
       window.clearInterval(interval);

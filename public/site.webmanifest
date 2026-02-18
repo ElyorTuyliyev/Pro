@@ -1,0 +1,16 @@
+{
+  "name": "Elyor Tuyliyev Portfolio",
+  "short_name": "Elyor",
+  "description": "Web developer portfolio with React and TypeScript projects.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

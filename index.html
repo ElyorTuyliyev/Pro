@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="application-name" content="Elyor Tuyliyev Portfolio" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/og-image.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og-image.jpg" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Elyor Tuyliyev | Web Developer Portfolio</title>
     <meta
       name="description"
@@ -18,8 +25,8 @@
     <meta name="author" content="Elyor Tuyliyev" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="googlebot" content="index,follow" />
-    <meta name="theme-color" content="#020617" />
-    <link rel="canonical" href="/" />
+    <link rel="canonical" href="https://your-domain.com/" />
+    <link rel="alternate" href="https://your-domain.com/" hreflang="en" />
 
     <meta property="og:locale" content="en_US" />
     <meta
@@ -32,46 +39,93 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Elyor Tuyliyev Portfolio" />
-    <meta property="og:url" content="/" />
+    <meta property="og:url" content="https://your-domain.com/" />
     <meta property="og:image" content="/og-image.jpg" />
-    <meta property="og:image:alt" content="Elyor Tuyliyev web developer portfolio cover image" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="640" />
+    <meta
+      property="og:image:alt"
+      content="Elyor Tuyliyev web developer portfolio cover image"
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Elyor Tuyliyev | Web Developer Portfolio" />
+    <meta
+      name="twitter:title"
+      content="Elyor Tuyliyev | Web Developer Portfolio"
+    />
     <meta
       name="twitter:description"
       content="Web developer portfolio with React and TypeScript projects, experience, and direct contact."
     />
     <meta name="twitter:image" content="/og-image.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Elyor Tuyliyev web developer portfolio cover image"
+    />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Elyor Tuyliyev",
-        "jobTitle": "Web Developer",
-        "description": "Software engineer focused on React, TypeScript, and high-performance frontend products.",
-        "email": "mailto:elyor.tuyliyev@gmail.com",
-        "telephone": "+998884848833",
-        "sameAs": [
-          "https://www.linkedin.com/in/elyor-web-developer/",
-          "https://github.com/ElyorTuyliyev",
-          "https://www.instagram.com/stackmaster_el/",
-          "https://t.me/+998884848833"
-        ],
-        "knowsAbout": [
-          "React",
-          "TypeScript",
-          "JavaScript",
-          "Next.js",
-          "Tailwind CSS",
-          "Frontend Development"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "Elyor Tuyliyev Portfolio",
+            "url": "https://your-domain.com/",
+            "description": "Web developer portfolio with React and TypeScript projects, experience, and direct contact."
+          },
+          {
+            "@type": "WebPage",
+            "name": "Elyor Tuyliyev | Web Developer Portfolio",
+            "url": "https://your-domain.com/",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "Elyor Tuyliyev Portfolio",
+              "url": "https://your-domain.com/"
+            },
+            "description": "Portfolio website of Elyor Tuyliyev, software engineer focused on modern frontend development."
+          },
+          {
+            "@type": "Person",
+            "name": "Elyor Tuyliyev",
+            "jobTitle": "Web Developer",
+            "description": "Software engineer focused on React, TypeScript, and high-performance frontend products.",
+            "email": "mailto:elyor.tuyliyev@gmail.com",
+            "telephone": "+998884848833",
+            "sameAs": [
+              "https://www.linkedin.com/in/elyor-web-developer/",
+              "https://github.com/ElyorTuyliyev",
+              "https://www.instagram.com/stackmaster_el/",
+              "https://t.me/+998884848833"
+            ],
+            "knowsAbout": [
+              "React",
+              "TypeScript",
+              "JavaScript",
+              "Next.js",
+              "Tailwind CSS",
+              "Frontend Development"
+            ]
+          }
         ]
       }
+    </script>
+    <script>
+      (function () {
+        var absoluteUrl = window.location.origin + window.location.pathname;
+        var canonical = document.querySelector('link[rel="canonical"]');
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (canonical) canonical.setAttribute("href", absoluteUrl);
+        if (ogUrl) ogUrl.setAttribute("content", absoluteUrl);
+      })();
     </script>
   </head>
 
   <body>
+    <noscript>
+      Elyor Tuyliyev portfolio site. JavaScript is disabled in your browser.
+      Please enable JavaScript for full content.
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

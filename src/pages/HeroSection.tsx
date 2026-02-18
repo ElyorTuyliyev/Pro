@@ -36,7 +36,7 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
             window.clearInterval(typingTimer);
           }
         }
-      }, 55);
+      }, 120);
     };
 
     if (isFirstRender.current) {
@@ -55,7 +55,7 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
           }
           startTyping();
         }
-      }, 30);
+      }, 85);
     }
 
     return () => {
@@ -150,6 +150,8 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
                 src={me}
                 alt={`${PROFILE.fullName} profile`}
                 className="h-[460px] w-full object-cover"
+                width={640}
+                height={640}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
