@@ -17,7 +17,12 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("home");
   const [visibleSections, setVisibleSections] = useState<
     Partial<Record<SectionId, boolean>>
-  >({});
+  >({
+    about: true,
+    skills: true,
+    experience: true,
+    contact: true,
+  });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [roleIndex, setRoleIndex] = useState(0);
 
@@ -43,21 +48,10 @@ const Index = () => {
             prev[sectionId] ? prev : { ...prev, [sectionId]: true },
           );
         });
-
-        const currentSection = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (currentSection?.target?.id) {
-          const sectionId = currentSection.target.id as SectionId;
-          if (sectionIds.includes(sectionId)) {
-            setActiveSection(sectionId);
-          }
-        }
       },
       {
-        rootMargin: "-35% 0px -45% 0px",
-        threshold: [0.2, 0.4, 0.6],
+        rootMargin: "-10% 0px -15% 0px",
+        threshold: [0.01, 0.08, 0.2],
       },
     );
 
@@ -80,12 +74,31 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
+    const sectionIds = NAV_ITEMS.map((item) => item.id);
+
     const handleScroll = () => {
       const scrollTop = document.documentElement.scrollTop;
       const scrollHeight =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
       const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      const marker = scrollTop + 180;
+      let currentSection: SectionId = "home";
+
+      for (const sectionId of sectionIds) {
+        const section = document.getElementById(sectionId);
+        if (!section) {
+          continue;
+        }
+
+        if (marker >= section.offsetTop) {
+          currentSection = sectionId;
+        }
+      }
+
+      setActiveSection((prev) =>
+        prev === currentSection ? prev : currentSection,
+      );
 
       setScrollProgress(Math.min(100, Math.max(0, progress)));
     };

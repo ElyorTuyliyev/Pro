@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Download, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HERO_CONTENT, PROFILE, ROTATING_ROLES } from "@/constants/portfolio";
@@ -10,6 +11,62 @@ type HeroSectionProps = {
 
 const HeroSection = ({ roleIndex }: HeroSectionProps) => {
   const tickerItems = [...HERO_CONTENT.ticker, ...HERO_CONTENT.ticker];
+  const [typedRole, setTypedRole] = useState("");
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    const nextRole = ROTATING_ROLES[roleIndex];
+    const previousRole =
+      ROTATING_ROLES[
+        (roleIndex - 1 + ROTATING_ROLES.length) % ROTATING_ROLES.length
+      ];
+
+    let deletingTimer: number | undefined;
+    let typingTimer: number | undefined;
+    let currentText = isFirstRender.current ? "" : previousRole;
+
+    const startTyping = () => {
+      let charIndex = 0;
+      typingTimer = window.setInterval(() => {
+        charIndex += 1;
+        setTypedRole(nextRole.slice(0, charIndex));
+
+        if (charIndex >= nextRole.length) {
+          if (typingTimer) {
+            window.clearInterval(typingTimer);
+          }
+        }
+      }, 55);
+    };
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      setTypedRole("");
+      startTyping();
+    } else {
+      setTypedRole(previousRole);
+      deletingTimer = window.setInterval(() => {
+        currentText = currentText.slice(0, -1);
+        setTypedRole(currentText);
+
+        if (currentText.length === 0) {
+          if (deletingTimer) {
+            window.clearInterval(deletingTimer);
+          }
+          startTyping();
+        }
+      }, 30);
+    }
+
+    return () => {
+      if (deletingTimer) {
+        window.clearInterval(deletingTimer);
+      }
+      if (typingTimer) {
+        window.clearInterval(typingTimer);
+      }
+    };
+  }, [roleIndex]);
 
   return (
     <section id="home" className="scroll-mt-36 relative px-6 pb-20 pt-40">
@@ -31,8 +88,14 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
 
             <p className="mt-6 max-w-2xl text-lg text-slate-300 sm:text-xl">
               {HERO_CONTENT.lead}{" "}
-              <span className="inline-block rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-cyan-200 transition-all duration-500">
-                {ROTATING_ROLES[roleIndex]}
+              <span className="inline-flex items-center bg-gradient-to-r from-cyan-200 to-blue-300 bg-clip-text font-semibold text-transparent">
+                {typedRole}
+                <span
+                  aria-hidden="true"
+                  className="ml-0.5 animate-pulse text-cyan-200/80"
+                >
+                  |
+                </span>
               </span>
             </p>
 
@@ -50,7 +113,11 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
                   {HERO_CONTENT.primaryCtaLabel}
                 </Button>
               </a>
-              <a href={HERO_CONTENT.secondaryCtaHref} target="_blank" rel="noreferrer">
+              <a
+                href={HERO_CONTENT.secondaryCtaHref}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <Button
                   variant="outline"
                   size="lg"
@@ -88,7 +155,9 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
                 decoding="async"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-6">
-                <p className="text-sm uppercase tracking-[0.2em] text-cyan-200/80">Focused On</p>
+                <p className="text-sm uppercase tracking-[0.2em] text-cyan-200/80">
+                  Focused On
+                </p>
                 <p className="mt-2 text-xl font-semibold text-white">
                   Product-ready frontend engineering
                 </p>
