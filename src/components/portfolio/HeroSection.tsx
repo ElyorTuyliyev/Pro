@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Download, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { HERO_CONTENT, PROFILE, ROTATING_ROLES } from "@/constants/portfolio";
-import cv from "@/assets/Elyor_CV.pdf";
-import me from "@/assets/me.jpg";
 
 type HeroSectionProps = {
   roleIndex: number;
@@ -31,10 +30,8 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
         charIndex += 1;
         setTypedRole(nextRole.slice(0, charIndex));
 
-        if (charIndex >= nextRole.length) {
-          if (typingTimer) {
-            window.clearInterval(typingTimer);
-          }
+        if (charIndex >= nextRole.length && typingTimer) {
+          window.clearInterval(typingTimer);
         }
       }, 120);
     };
@@ -87,8 +84,8 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg text-slate-300 sm:text-xl">
-              {HERO_CONTENT.lead}{" "}
-              <span className="inline-flex items-center bg-gradient-to-r from-cyan-200 to-blue-300 bg-clip-text font-semibold text-transparent">
+              <span>{HERO_CONTENT.lead}</span>
+              <span className="ml-2 inline-flex items-center bg-gradient-to-r from-cyan-200 to-blue-300 bg-clip-text font-semibold text-transparent max-[450px]:ml-0 max-[450px]:mt-1 max-[450px]:flex">
                 {typedRole}
                 <span
                   aria-hidden="true"
@@ -104,7 +101,7 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href={cv} download>
+              <a href="/Elyor_CV.pdf" download>
                 <Button
                   size="lg"
                   className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 px-8 py-3 font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-1 hover:brightness-110 hover:shadow-[0_18px_40px_-18px_rgba(56,189,248,0.95)] sm:w-auto"
@@ -146,15 +143,13 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
 
           <div className="relative mx-auto w-full max-w-md">
             <div className="relative overflow-hidden rounded-[2rem] border border-slate-700/80 bg-slate-900/75 shadow-[0_32px_70px_-44px_rgba(56,189,248,0.78)]">
-              <img
-                src={me}
+              <Image
+                src="/me.jpg"
                 alt={`${PROFILE.fullName} profile`}
                 className="h-[460px] w-full object-cover"
                 width={640}
                 height={640}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
+                priority
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-6">
                 <p className="text-sm uppercase tracking-[0.2em] text-cyan-200/80">

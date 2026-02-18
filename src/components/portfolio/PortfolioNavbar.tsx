@@ -1,3 +1,4 @@
+import { Phone } from "lucide-react";
 import { NAV_ITEMS, PROFILE, type SectionId } from "@/constants/portfolio";
 
 type PortfolioNavbarProps = {
@@ -25,6 +26,7 @@ const PortfolioNavbar = ({ activeSection, onNavigate }: PortfolioNavbarProps) =>
               <a
                 key={item.id}
                 href={`#${item.id}`}
+                aria-label={item.label}
                 onClick={(event) => {
                   event.preventDefault();
                   onNavigate(item.id);
@@ -35,7 +37,16 @@ const PortfolioNavbar = ({ activeSection, onNavigate }: PortfolioNavbarProps) =>
                     : "text-slate-300 hover:bg-slate-800 hover:text-white"
                 }`}
               >
-                {item.label}
+                {item.id === "contact" ? (
+                  <>
+                    <span className="max-[440px]:hidden">{item.label}</span>
+                    <span className="hidden max-[440px]:inline-flex">
+                      <Phone className="h-3.5 w-3.5" />
+                    </span>
+                  </>
+                ) : (
+                  item.label
+                )}
                 {activeSection === item.id && (
                   <span className="absolute inset-x-2 -bottom-0.5 h-px rounded-full bg-gradient-to-r from-transparent via-cyan-300 to-transparent" />
                 )}

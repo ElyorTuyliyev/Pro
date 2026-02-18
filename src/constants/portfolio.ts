@@ -151,7 +151,7 @@ export const CONTACT_CONTENT = {
   sendingButtonLabel: "Sending...",
   sentMessage: "Message sent successfully.",
   errorMessage:
-    "Could not send the message. Check VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID.",
+    "Could not send the message. Check NEXT_PUBLIC_TELEGRAM_BOT_TOKEN and NEXT_PUBLIC_TELEGRAM_CHAT_ID.",
 } as const;
 
 export const CONTACT_EMAIL = "mailto:elyor.tuyliyev@gmail.com";

@@ -34,8 +34,8 @@ const ContactSection = ({ className }: ContactSectionProps) => {
     message: "",
   });
 
-  const telegramBotToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-  const telegramChatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+  const telegramBotToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+  const telegramChatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
   const handleContactFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
