@@ -21,7 +21,7 @@ export type ExperienceItem = {
 };
 
 export type ContactAction = {
-  id: "linkedin" | "github" | "instagram" | "phone";
+  id: "telegram" | "linkedin" | "github" | "instagram" | "phone";
   label: string;
   href: string;
   external?: boolean;
@@ -142,7 +142,8 @@ export const CONTACT_CONTENT = {
   description:
     "Have a project idea, open role, or collaboration in mind? Send a message and I will reply quickly.",
   quickMessageTitle: "Send Direct Message",
-  quickMessageDescription: "Fill out the form and your message will be sent to me on Telegram.",
+  quickMessageDescription:
+    "Fill out the form and your message will be sent to me on Telegram.",
   formNamePlaceholder: "Your name",
   formPhonePlaceholder: "Your phone",
   formMessagePlaceholder: "Tell me about your project...",
@@ -173,6 +174,12 @@ export const CONTACT_ACTIONS: ContactAction[] = [
     id: "instagram",
     label: "Instagram",
     href: "https://www.instagram.com/stackmaster_el/",
+    external: true,
+  },
+  {
+    id: "telegram",
+    label: "Telegram",
+    href: "https://t.me/+998884848833",
     external: true,
   },
   {

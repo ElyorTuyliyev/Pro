@@ -54,7 +54,7 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full border-slate-600 bg-slate-900/70 px-8 py-3 text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-slate-900 sm:w-auto"
+                  className="w-full border-slate-600 bg-slate-900/70 px-8 py-3 text-white transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-slate-900 hover:text-white sm:w-auto"
                 >
                   {HERO_CONTENT.secondaryCtaLabel}
                   <ArrowUpRight className="ml-2 h-5 w-5" />
@@ -95,10 +95,10 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
               </div>
             </div>
 
-            <div className="float-slow absolute -left-7 top-10 rounded-xl border border-cyan-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
+            <div className="absolute -left-7 top-10 rounded-xl border border-cyan-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
               Fast Delivery
             </div>
-            <div className="float-slow absolute -bottom-4 right-0 rounded-xl border border-amber-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100 [animation-delay:750ms]">
+            <div className="absolute -bottom-4 right-0 rounded-xl border border-amber-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100">
               Clean Code
             </div>
           </div>

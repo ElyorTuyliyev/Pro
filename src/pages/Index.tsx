@@ -17,12 +17,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("home");
   const [visibleSections, setVisibleSections] = useState<
     Partial<Record<SectionId, boolean>>
-  >({
-    about: false,
-    skills: false,
-    experience: false,
-    contact: false,
-  });
+  >({});
   const [scrollProgress, setScrollProgress] = useState(0);
   const [roleIndex, setRoleIndex] = useState(0);
 
@@ -31,15 +26,6 @@ const Index = () => {
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section));
-
-    if (window.matchMedia("(max-width: 768px)").matches) {
-      setVisibleSections((prev) =>
-        sectionIds.reduce<Partial<Record<SectionId, boolean>>>(
-          (acc, id) => ({ ...acc, [id]: prev[id] ?? true }),
-          {},
-        ),
-      );
-    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -70,21 +56,12 @@ const Index = () => {
         }
       },
       {
-        rootMargin: "-10% 0px -15% 0px",
-        threshold: [0.01, 0.08, 0.2],
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.4, 0.6],
       },
     );
 
     sections.forEach((section) => observer.observe(section));
-
-    const revealFallback = window.setTimeout(() => {
-      setVisibleSections((prev) =>
-        sectionIds.reduce<Partial<Record<SectionId, boolean>>>(
-          (acc, id) => ({ ...acc, [id]: prev[id] ?? true }),
-          {},
-        ),
-      );
-    }, 1500);
 
     const handleHashChange = () => {
       const hashSection = window.location.hash.replace("#", "") as SectionId;
@@ -98,7 +75,6 @@ const Index = () => {
 
     return () => {
       observer.disconnect();
-      window.clearTimeout(revealFallback);
       window.removeEventListener("hashchange", handleHashChange);
     };
   }, []);
@@ -142,9 +118,9 @@ const Index = () => {
   };
 
   const getSectionVisibilityClass = (sectionId: SectionId) =>
-    visibleSections[sectionId] === false
-      ? "opacity-0 translate-y-8"
-      : "opacity-100 translate-y-0";
+    visibleSections[sectionId]
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 translate-y-8";
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-slate-950">
