@@ -80,6 +80,7 @@ const ContactSection = ({ className }: ContactSectionProps) => {
     <section
       id="contact"
       className={`scroll-mt-36 px-6 py-24 transition-all duration-700 ${className}`}
+      style={{ contentVisibility: "auto", containIntrinsicSize: "1000px" }}
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
@@ -173,7 +174,7 @@ const ContactSection = ({ className }: ContactSectionProps) => {
             </Card>
           </div>
 
-          <Card className="rounded-3xl border-slate-700/70 bg-slate-900/65 text-left backdrop-blur-sm">
+          <Card className="rounded-3xl border-slate-700/70 bg-slate-900/72 text-left">
             <CardContent className="p-8 sm:p-10">
               <h3 className="text-2xl font-semibold text-white">{CONTACT_CONTENT.quickMessageTitle}</h3>
               <p className="mt-2 text-slate-300">{CONTACT_CONTENT.quickMessageDescription}</p>

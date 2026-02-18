@@ -8,7 +8,7 @@ type PortfolioNavbarProps = {
 const PortfolioNavbar = ({ activeSection, onNavigate }: PortfolioNavbarProps) => {
   return (
     <nav className="fixed inset-x-0 top-4 z-50 px-4">
-      <div className="mx-auto max-w-6xl rounded-2xl border border-slate-700/60 bg-slate-950/70 shadow-[0_24px_70px_-40px_rgba(34,211,238,0.65)] backdrop-blur-xl">
+      <div className="mx-auto max-w-6xl rounded-2xl border border-slate-700/60 bg-slate-950/72 shadow-[0_18px_50px_-34px_rgba(34,211,238,0.55)] backdrop-blur-md">
         <div className="flex flex-wrap items-center gap-3 px-4 py-3 sm:flex-nowrap sm:px-6">
           <div className="hidden items-center gap-3 sm:flex">
             <div className="grid h-9 w-9 place-content-center rounded-lg bg-gradient-to-br from-cyan-300 via-blue-400 to-blue-600 text-sm font-bold text-slate-950">

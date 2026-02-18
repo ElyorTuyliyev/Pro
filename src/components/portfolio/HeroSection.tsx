@@ -66,7 +66,7 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
               {HERO_CONTENT.metrics.map((metric) => (
                 <div
                   key={metric.label}
-                  className="rounded-2xl border border-slate-700/70 bg-slate-900/50 px-4 py-4 backdrop-blur-sm"
+                  className="rounded-2xl border border-slate-700/70 bg-slate-900/60 px-4 py-4"
                 >
                   <p className="text-xl font-bold text-white">{metric.value}</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-slate-400">
@@ -78,12 +78,14 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
           </div>
 
           <div className="relative mx-auto w-full max-w-md">
-            <div className="relative overflow-hidden rounded-[2rem] border border-slate-700/80 bg-slate-900/70 shadow-[0_40px_90px_-50px_rgba(56,189,248,0.85)] backdrop-blur-sm">
+            <div className="relative overflow-hidden rounded-[2rem] border border-slate-700/80 bg-slate-900/75 shadow-[0_32px_70px_-44px_rgba(56,189,248,0.78)]">
               <img
                 src={me}
                 alt={`${PROFILE.fullName} profile`}
                 className="h-[460px] w-full object-cover"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-6">
                 <p className="text-sm uppercase tracking-[0.2em] text-cyan-200/80">Focused On</p>

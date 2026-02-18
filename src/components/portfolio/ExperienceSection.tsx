@@ -11,6 +11,7 @@ const ExperienceSection = ({ className }: ExperienceSectionProps) => {
     <section
       id="experience"
       className={`scroll-mt-36 px-6 py-24 transition-all duration-700 ${className}`}
+      style={{ contentVisibility: "auto", containIntrinsicSize: "900px" }}
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">

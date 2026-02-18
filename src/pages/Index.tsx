@@ -121,9 +121,9 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-slate-950">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-cyan-400/15 blur-[120px]" />
-        <div className="absolute right-0 top-64 h-80 w-80 rounded-full bg-blue-500/15 blur-[140px]" />
-        <div className="absolute bottom-20 left-1/3 h-72 w-72 rounded-full bg-amber-300/10 blur-[130px]" />
+        <div className="absolute -left-16 top-12 h-52 w-52 rounded-full bg-cyan-400/10 blur-[70px] sm:-left-24 sm:h-72 sm:w-72 sm:bg-cyan-400/14 sm:blur-[110px]" />
+        <div className="absolute right-0 top-64 h-56 w-56 rounded-full bg-blue-500/10 blur-[80px] sm:h-80 sm:w-80 sm:bg-blue-500/14 sm:blur-[120px]" />
+        <div className="absolute bottom-20 left-1/3 hidden h-72 w-72 rounded-full bg-amber-300/10 blur-[110px] sm:block" />
       </div>
 
       <PageProgress value={scrollProgress} />
