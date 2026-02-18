@@ -18,8 +18,12 @@ const AboutSection = ({ className }: AboutSectionProps) => {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
             About
           </p>
-          <h2 className="text-4xl font-bold text-white sm:text-5xl">{ABOUT_CONTENT.title}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">{ABOUT_CONTENT.subtitle}</p>
+          <h2 className="text-4xl font-bold text-white sm:text-5xl">
+            {ABOUT_CONTENT.title}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">
+            {ABOUT_CONTENT.subtitle}
+          </p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -41,8 +45,12 @@ const AboutSection = ({ className }: AboutSectionProps) => {
                   <span className="text-sm font-semibold text-slate-500">{`0${index + 1}`}</span>
                 </div>
 
-                <h3 className="text-2xl font-semibold text-white">{card.title}</h3>
-                <p className="mt-4 leading-relaxed text-slate-300">{card.description}</p>
+                <h3 className="text-2xl font-semibold text-white">
+                  {card.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-slate-300">
+                  {card.description}
+                </p>
               </CardContent>
             </Card>
           ))}

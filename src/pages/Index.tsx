@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import AboutSection from "@/components/portfolio/AboutSection";
-import ContactSection from "@/components/portfolio/ContactSection";
-import ExperienceSection from "@/components/portfolio/ExperienceSection";
-import HeroSection from "@/components/portfolio/HeroSection";
-import PageProgress from "@/components/portfolio/PageProgress";
-import PortfolioFooter from "@/components/portfolio/PortfolioFooter";
-import PortfolioNavbar from "@/components/portfolio/PortfolioNavbar";
-import SkillsSection from "@/components/portfolio/SkillsSection";
-import { NAV_ITEMS, ROTATING_ROLES, type SectionId } from "@/constants/portfolio";
+import AboutSection from "@/pages/AboutSection";
+import ContactSection from "@/pages/ContactSection";
+import ExperienceSection from "@/pages/ExperienceSection";
+import HeroSection from "@/pages/HeroSection";
+import PageProgress from "@/pages/PageProgress";
+import PortfolioFooter from "@/pages/PortfolioFooter";
+import PortfolioNavbar from "@/pages/PortfolioNavbar";
+import SkillsSection from "@/pages/SkillsSection";
+import {
+  NAV_ITEMS,
+  ROTATING_ROLES,
+  type SectionId,
+} from "@/constants/portfolio";
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState<SectionId>("home");
@@ -127,7 +131,10 @@ const Index = () => {
       </div>
 
       <PageProgress value={scrollProgress} />
-      <PortfolioNavbar activeSection={activeSection} onNavigate={handleNavigate} />
+      <PortfolioNavbar
+        activeSection={activeSection}
+        onNavigate={handleNavigate}
+      />
       <HeroSection roleIndex={roleIndex} />
       <AboutSection className={getSectionVisibilityClass("about")} />
       <SkillsSection
