@@ -80,7 +80,6 @@ const ContactSection = ({ className }: ContactSectionProps) => {
     <section
       id="contact"
       className={`scroll-mt-36 px-6 py-24 transition-all duration-700 ${className}`}
-      style={{ contentVisibility: "auto", containIntrinsicSize: "1000px" }}
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-14 text-center">
