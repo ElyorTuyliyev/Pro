@@ -1,278 +1,142 @@
-import { Mail, Github, Linkedin, Code, Briefcase, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import AboutSection from "@/components/portfolio/AboutSection";
+import ContactSection from "@/components/portfolio/ContactSection";
+import ExperienceSection from "@/components/portfolio/ExperienceSection";
+import HeroSection from "@/components/portfolio/HeroSection";
+import PageProgress from "@/components/portfolio/PageProgress";
+import PortfolioFooter from "@/components/portfolio/PortfolioFooter";
+import PortfolioNavbar from "@/components/portfolio/PortfolioNavbar";
+import SkillsSection from "@/components/portfolio/SkillsSection";
+import { NAV_ITEMS, ROTATING_ROLES, type SectionId } from "@/constants/portfolio";
 
 const Index = () => {
-  const skills = [
-    "JavaScript",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "HTML/CSS",
-    "Git",
-    "RESTful APIs",
-    "Responsive Design",
-  ];
+  const [activeSection, setActiveSection] = useState<SectionId>("home");
+  const [visibleSections, setVisibleSections] = useState<
+    Partial<Record<SectionId, boolean>>
+  >({});
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [roleIndex, setRoleIndex] = useState(0);
 
-  const experiences = [
-    {
-      company: "Alitech",
-      location: "Uzbekistan",
-      duration: "1.5+ years",
-      description:
-        "Worked on several different products and software solutions, contributing to various aspects of development and gaining comprehensive experience in the software development lifecycle.",
-    },
-  ];
-  const navigate = useNavigate();
+  useEffect(() => {
+    const sectionIds = NAV_ITEMS.map((item) => item.id);
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          const sectionId = entry.target.id as SectionId;
+          if (!sectionIds.includes(sectionId)) {
+            return;
+          }
+
+          setVisibleSections((prev) =>
+            prev[sectionId] ? prev : { ...prev, [sectionId]: true },
+          );
+        });
+
+        const currentSection = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (currentSection?.target?.id) {
+          const sectionId = currentSection.target.id as SectionId;
+          if (sectionIds.includes(sectionId)) {
+            setActiveSection(sectionId);
+          }
+        }
+      },
+      {
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0.2, 0.4, 0.6],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    const handleHashChange = () => {
+      const hashSection = window.location.hash.replace("#", "") as SectionId;
+      if (sectionIds.includes(hashSection)) {
+        setActiveSection(hashSection);
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % ROTATING_ROLES.length);
+    }, 2200);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  const handleNavigate = (sectionId: SectionId) => {
+    setActiveSection(sectionId);
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    window.history.replaceState(null, "", `#${sectionId}`);
+  };
+
+  const getSectionVisibilityClass = (sectionId: SectionId) =>
+    visibleSections[sectionId]
+      ? "opacity-100 translate-y-0"
+      : "opacity-0 translate-y-8";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-sm border-b border-slate-700 z-50">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-xl font-bold text-white">Tuyliyev Elyor</h1>
-            <div className="flex space-x-6">
-              <a
-                href="#about"
-                className="text-slate-300 hover:text-white transition-colors"
-              >
-                About
-              </a>
-              <a
-                href="#skills"
-                className="text-slate-300 hover:text-white transition-colors"
-              >
-                Skills
-              </a>
-              <a
-                href="#experience"
-                className="text-slate-300 hover:text-white transition-colors"
-              >
-                Experience
-              </a>
-              <a
-                href="#contact"
-                className="text-slate-300 hover:text-white transition-colors"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="relative min-h-screen overflow-x-hidden bg-slate-950">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-cyan-400/15 blur-[120px]" />
+        <div className="absolute right-0 top-64 h-80 w-80 rounded-full bg-blue-500/15 blur-[140px]" />
+        <div className="absolute bottom-20 left-1/3 h-72 w-72 rounded-full bg-amber-300/10 blur-[130px]" />
+      </div>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              Tuyliyev <span className="text-blue-400">Elyor</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
-              Software Engineer specializing in JavaScript and React with 1.5+
-              years of experience
-            </p>
-            <p className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
-              Passionate about creating innovative solutions and eager to learn
-              new technologies. Building exceptional digital experiences with
-              modern web technologies.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
-              >
-                <Mail className="mr-2 h-5 w-5" />
-                Get In Touch
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                style={{ backgroundColor: "black", color: "white" }}
-              >
-                <Github className="mr-2 h-5 w-5" />
-                View Projects
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-            <div className="w-24 h-1 bg-blue-400 mx-auto"></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <Card className="bg-slate-800 border-slate-700 hover:bg-slate-700 transition-colors">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-4">
-                    <User className="h-8 w-8 text-blue-400 mr-3" />
-                    <h3 className="text-2xl font-semibold text-white">
-                      Who I Am
-                    </h3>
-                  </div>
-                  <p className="text-slate-300 text-lg leading-relaxed">
-                    I'm a dedicated software engineer with a strong foundation
-                    in JavaScript and React. With over 1.5 years of professional
-                    experience, I've developed a passion for creating efficient,
-                    scalable solutions and staying at the forefront of web
-                    development technologies.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="space-y-6">
-              <Card className="bg-slate-800 border-slate-700 hover:bg-slate-700 transition-colors">
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-4">
-                    <Code className="h-8 w-8 text-blue-400 mr-3" />
-                    <h3 className="text-2xl font-semibold text-white">
-                      What I Do
-                    </h3>
-                  </div>
-                  <p className="text-slate-300 text-lg leading-relaxed">
-                    I specialize in front-end development with React and
-                    JavaScript, building responsive and user-friendly web
-                    applications. I'm always eager to learn new technologies and
-                    expand my skill set to deliver cutting-edge solutions.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Technical Skills
-            </h2>
-            <div className="w-24 h-1 bg-blue-400 mx-auto"></div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {skills.map((skill, index) => (
-              <Card
-                key={skill}
-                className="bg-slate-800 border-slate-700 hover:bg-slate-700 hover:scale-105 transition-all duration-300"
-              >
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Code className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">{skill}</h3>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">Experience</h2>
-            <div className="w-24 h-1 bg-blue-400 mx-auto"></div>
-          </div>
-          <div className="max-w-3xl mx-auto">
-            {experiences.map((exp, index) => (
-              <Card
-                key={index}
-                className="bg-slate-800 border-slate-700 hover:bg-slate-700 transition-colors"
-              >
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <Briefcase className="h-8 w-8 text-blue-400 mr-3" />
-                    <div>
-                      <h3 className="text-2xl font-semibold text-white">
-                        {exp.company}
-                      </h3>
-                      <p className="text-slate-400">
-                        {exp.location} • {exp.duration}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-slate-300 text-lg leading-relaxed">
-                    {exp.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-slate-900/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Let's Connect
-            </h2>
-            <div className="w-24 h-1 bg-blue-400 mx-auto mb-8"></div>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              I'm always interested in new opportunities and collaborations.
-              Let's discuss how we can work together!
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Button
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4"
-            >
-              <Mail className="mr-2 h-5 w-5" />
-              Email Me
-            </Button>
-            <Link to={"https://www.linkedin.com/in/elyor-web-developer/"}>
-              <Button
-                variant="outline"
-                size="lg"
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  width: "100%",
-                }}
-              >
-                <Linkedin className="mr-2 h-5 w-5" />
-                LinkedIn
-              </Button>
-            </Link>
-            <Link to={"https://github.com/ElyorTuyliyev"}>
-              <Button
-                variant="outline"
-                size="lg"
-                style={{
-                  backgroundColor: "black",
-                  color: "white",
-                  width: "100%",
-                }}
-              >
-                <Github className="mr-2 h-5 w-5" />
-                GitHub
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-700">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400">
-            © 2024 Tuyliyev Elyor. Built with React and passion for great
-            design.
-          </p>
-        </div>
-      </footer>
+      <PageProgress value={scrollProgress} />
+      <PortfolioNavbar activeSection={activeSection} onNavigate={handleNavigate} />
+      <HeroSection roleIndex={roleIndex} />
+      <AboutSection className={getSectionVisibilityClass("about")} />
+      <SkillsSection
+        className={getSectionVisibilityClass("skills")}
+        isVisible={Boolean(visibleSections.skills)}
+      />
+      <ExperienceSection className={getSectionVisibilityClass("experience")} />
+      <ContactSection className={getSectionVisibilityClass("contact")} />
+      <PortfolioFooter />
     </div>
   );
 };

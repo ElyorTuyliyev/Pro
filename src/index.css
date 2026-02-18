@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -101,5 +103,56 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(34, 211, 238, 0.08), transparent 34%),
+      radial-gradient(circle at 86% 22%, rgba(59, 130, 246, 0.09), transparent 36%),
+      radial-gradient(circle at 45% 88%, rgba(251, 191, 36, 0.06), transparent 30%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Sora", "Trebuchet MS", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.28);
+    color: #ecfeff;
+  }
+}
+
+@layer utilities {
+  .marquee-track {
+    animation: marquee-horizontal 22s linear infinite;
+  }
+
+  .float-slow {
+    animation: float-slow 5s ease-in-out infinite;
+  }
+}
+
+@keyframes marquee-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
   }
 }
