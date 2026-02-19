@@ -1,4 +1,4 @@
-import { Code, User } from "lucide-react";
+import { Award, Code, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ABOUT_CONTENT } from "@/constants/portfolio";
 
@@ -37,6 +37,8 @@ const AboutSection = ({ className }: AboutSectionProps) => {
                   <div className="grid h-12 w-12 place-content-center rounded-2xl border border-cyan-300/30 bg-cyan-400/10 text-cyan-200">
                     {card.icon === "user" ? (
                       <User className="h-6 w-6" />
+                    ) : card.icon === "award" ? (
+                      <Award className="h-6 w-6" />
                     ) : (
                       <Code className="h-6 w-6" />
                     )}

@@ -6,10 +6,10 @@ export type NavItem = {
 };
 
 export type AboutCard = {
-  id: "who-i-am" | "what-i-do";
+  id: "who-i-am" | "what-i-do" | "credentials";
   title: string;
   description: string;
-  icon: "user" | "code";
+  icon: "user" | "code" | "award";
 };
 
 export type ExperienceItem = {
@@ -49,10 +49,10 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const ROTATING_ROLES = [
-  "Frontend Architect",
-  "React Specialist",
-  "UX-Focused Builder",
-  "Performance Enthusiast",
+  "Frontend Engineer",
+  "React & Next.js Developer",
+  "Mentor & Product Builder",
+  "Performance-Focused Coder",
 ];
 
 export const HERO_CONTENT = {
@@ -61,14 +61,14 @@ export const HERO_CONTENT = {
   titleAccent: "Web Developer",
   lead: "Software Engineer with",
   description:
-    "I design and ship fast, modern, and conversion-focused web products. Clean architecture, smooth UX, and measurable business impact.",
+    "Frontend Engineer with 2+ years of hands-on experience building production-ready web applications using React, Next.js, and TypeScript.",
   primaryCtaLabel: "Download CV",
   secondaryCtaLabel: "View Projects",
   secondaryCtaHref: "https://github.com/ElyorTuyliyev",
   metrics: [
-    { value: "2+ Years", label: "Hands-on Experience" },
-    { value: "20+ Projects", label: "Delivered Products" },
-    { value: "100%", label: "Responsive-First Builds" },
+    { value: "2+ Years", label: "Frontend Experience" },
+    { value: "2 Platforms", label: "Business Products Built" },
+    { value: "1 Year", label: "Mentorship Experience" },
   ] satisfies HeroMetric[],
   ticker: [
     "React",
@@ -76,63 +76,93 @@ export const HERO_CONTENT = {
     "Next.js",
     "Tailwind",
     "Redux Toolkit",
+    "GraphQL",
     "REST APIs",
-    "Clean UI",
+    "SASS",
+    "Figma",
     "Performance",
   ],
 } as const;
 
 export const ABOUT_CONTENT = {
   title: "About Me",
-  subtitle: "I combine engineering discipline with product thinking.",
+  subtitle:
+    "I build practical products, mentor juniors, and focus on maintainable frontend architecture.",
   cards: [
     {
       id: "who-i-am",
       title: "Who I Am",
       icon: "user",
       description:
-        "I am a product-minded software engineer with a strong JavaScript and React background. I care about maintainable code, clear communication, and outcomes that move business metrics.",
+        "I am a frontend engineer from Jizzakh with 2+ years of hands-on experience. I am comfortable working independently and inside structured teams with clear communication and delivery focus.",
     },
     {
       id: "what-i-do",
       title: "What I Do",
       icon: "code",
       description:
-        "I build accessible interfaces, reusable component systems, and scalable front-end architecture. My focus is shipping fast without sacrificing quality or long-term maintainability.",
+        "I build responsive and production-ready interfaces, integrate REST and GraphQL APIs, and keep component architecture clean. I have worked on both construction and marketplace-style platforms.",
+    },
+    {
+      id: "credentials",
+      title: "Mentorship & Credentials",
+      icon: "award",
+      description:
+        "I mentored beginner developers for 1 year in HTML, CSS, JavaScript, and React. I completed the Meta Front-End Developer path and an AI & Machine Learning course.",
     },
   ] satisfies AboutCard[],
 } as const;
 
 export const SKILLS_TITLE = "Technical Stack";
 export const SKILLS_SUBTITLE =
-  "Tools and technologies I use to build fast, scalable products.";
+  "Core frontend, API, and tooling skills listed in my CV.";
 
 export const SKILLS = [
-  "HTML/CSS",
-  "JavaScript",
-  "React",
+  "React.js (Hooks)",
   "Next.js",
-  "Sass",
   "TypeScript",
-  "Git",
-  "Tailwind CSS",
+  "JavaScript (ES6+)",
   "Redux Toolkit",
-  "Node.js",
+  "React Router",
+  "HTML5 / CSS3",
+  "SASS",
+  "Responsive / Adaptive Layout",
+  "Cross-Browser Compatibility",
   "RESTful APIs",
-  "Responsive Design",
+  "GraphQL",
+  "Async Data Handling",
+  "Git / GitHub",
+  "Figma",
 ];
 
 export const EXPERIENCE_CONTENT = {
   title: "Experience",
-  subtitle: "Production work across multiple products and teams.",
+  subtitle:
+    "Hands-on work across startup products, marketplace platforms, and mentoring.",
   items: [
     {
-      company: "Alitech",
-      role: "Frontend Engineer",
-      location: "Uzbekistan",
-      duration: "2023 - Present",
+      company: "Construction Management Platform",
+      role: "Founder & Frontend Developer",
+      location: "Jizzakh, Uzbekistan",
+      duration: "Startup Product",
       description:
-        "Contributed to multiple software products from feature delivery to interface optimization. Worked closely with designers and backend teams to ship reliable, user-focused solutions.",
+        "Built the frontend architecture for cost estimation, material tracking, and salary calculation workflows. Implemented reusable components, responsive views, and backend API integration.",
+    },
+    {
+      company: "Kunjut.uz",
+      role: "Frontend Developer",
+      location: "Uzbekistan",
+      duration: "Marketplace Platform",
+      description:
+        "Developed and improved UI components, integrated dynamic API data, and optimized rendering structure for better performance across desktop and mobile.",
+    },
+    {
+      company: "Web Development Mentorship",
+      role: "Mentor",
+      location: "Remote",
+      duration: "1 Year",
+      description:
+        "Mentored beginner developers in HTML, CSS, JavaScript, and React. Guided students through practical projects and improved their code structure and frontend logic.",
     },
   ] satisfies ExperienceItem[],
 } as const;
@@ -154,7 +184,7 @@ export const CONTACT_CONTENT = {
     "Could not send the message. Check NEXT_PUBLIC_TELEGRAM_BOT_TOKEN and NEXT_PUBLIC_TELEGRAM_CHAT_ID.",
 } as const;
 
-export const CONTACT_EMAIL = "mailto:elyor.tuyliyev@gmail.com";
+export const CONTACT_EMAIL = "mailto:tuyliyevelyor@gmail.com";
 export const CONTACT_EMAIL_LABEL = "Email Me";
 
 export const CONTACT_ACTIONS: ContactAction[] = [
