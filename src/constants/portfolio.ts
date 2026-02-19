@@ -6,10 +6,14 @@ export type NavItem = {
 };
 
 export type AboutCard = {
-  id: "who-i-am" | "what-i-do" | "credentials";
+  id: "who-i-am" | "what-i-do" | "credentials" | "education" | "certifications";
   title: string;
   description: string;
-  icon: "user" | "code" | "award";
+  icon: "user" | "code" | "award" | "graduation";
+  links?: {
+    label: string;
+    href: string;
+  }[];
 };
 
 export type ExperienceItem = {
@@ -109,6 +113,30 @@ export const ABOUT_CONTENT = {
       icon: "award",
       description:
         "I mentored beginner developers for 1 year in HTML, CSS, JavaScript, and React. I completed the Meta Front-End Developer path and an AI & Machine Learning course.",
+    },
+    {
+      id: "education",
+      title: "Education",
+      icon: "graduation",
+      description:
+        "Samarkand Institute of Agro-Innovations and Research - Economics / Accounting.\nAlicode IT Academy - Frontend Development Program (2023).",
+    },
+    {
+      id: "certifications",
+      title: "Certificates",
+      icon: "award",
+      description:
+        "Meta Front-End Developer Professional Certificate (Coursera).\nIssued: May 7, 2025.",
+      links: [
+        {
+          label: "Verify on Coursera",
+          href: "https://coursera.org/verify/professional-cert/GSWDKWPBDAMO",
+        },
+        {
+          label: "View Certificate",
+          href: "/Coursera.pdf",
+        },
+      ],
     },
   ] satisfies AboutCard[],
 } as const;

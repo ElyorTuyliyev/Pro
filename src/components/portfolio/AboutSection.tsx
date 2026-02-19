@@ -1,4 +1,4 @@
-import { Award, Code, User } from "lucide-react";
+import { Award, Code, GraduationCap, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { ABOUT_CONTENT } from "@/constants/portfolio";
 
@@ -39,6 +39,8 @@ const AboutSection = ({ className }: AboutSectionProps) => {
                       <User className="h-6 w-6" />
                     ) : card.icon === "award" ? (
                       <Award className="h-6 w-6" />
+                    ) : card.icon === "graduation" ? (
+                      <GraduationCap className="h-6 w-6" />
                     ) : (
                       <Code className="h-6 w-6" />
                     )}
@@ -49,9 +51,24 @@ const AboutSection = ({ className }: AboutSectionProps) => {
                 <h3 className="text-2xl font-semibold text-white">
                   {card.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-slate-300">
+                <p className="mt-4 whitespace-pre-line leading-relaxed text-slate-300">
                   {card.description}
                 </p>
+                {card.links && card.links.length > 0 && (
+                  <div className="mt-5 flex flex-wrap gap-4">
+                    {card.links.map((link) => (
+                      <a
+                        key={`${card.id}-${link.label}`}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex text-sm font-semibold text-cyan-200 underline decoration-cyan-400/60 underline-offset-4 transition-colors hover:text-cyan-100"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
