@@ -2,18 +2,23 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import Providers from "@/app/providers";
+import { SITE_URL } from "@/lib/site";
 
-const siteUrl =
-  (process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com").replace(
-    /\/$/,
-    "",
-  );
+const SITE_NAME = "Elyor Tuyliyev Portfolio";
+const DEFAULT_TITLE = "Elyor Tuyliyev | Web Developer Portfolio";
+const DEFAULT_DESCRIPTION =
+  "Elyor Tuyliyev is a web developer and software engineer building fast, responsive, and conversion-focused React + TypeScript products.";
+const GOOGLE_SITE_VERIFICATION =
+  process.env.GOOGLE_SITE_VERIFICATION ||
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Elyor Tuyliyev | Web Developer Portfolio",
-  description:
-    "Elyor Tuyliyev is a web developer and software engineer building fast, responsive, and conversion-focused React + TypeScript products.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: DEFAULT_TITLE,
+    template: "%s | Elyor Tuyliyev",
+  },
+  description: DEFAULT_DESCRIPTION,
   keywords: [
     "Elyor Tuyliyev",
     "Web Developer",
@@ -24,19 +29,29 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   authors: [{ name: "Elyor Tuyliyev" }],
-  applicationName: "Elyor Tuyliyev Portfolio",
+  creator: "Elyor Tuyliyev",
+  publisher: "Elyor Tuyliyev",
+  applicationName: SITE_NAME,
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL,
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
       "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
+  verification: GOOGLE_SITE_VERIFICATION
+    ? {
+        google: GOOGLE_SITE_VERIFICATION,
+      }
+    : undefined,
   manifest: "/site.webmanifest",
   icons: {
     icon: "/favicon.svg",
@@ -45,11 +60,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    title: "Elyor Tuyliyev | Web Developer Portfolio",
-    description:
-      "Web developer portfolio focused on modern React, TypeScript, performance, and business-driven frontend products.",
-    siteName: "Elyor Tuyliyev Portfolio",
-    url: "/",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    siteName: SITE_NAME,
+    url: SITE_URL,
     images: [
       {
         url: "/og-image.jpg",
@@ -61,9 +75,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elyor Tuyliyev | Web Developer Portfolio",
-    description:
-      "Web developer portfolio with React and TypeScript projects, experience, and direct contact.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     images: ["/og-image.jpg"],
   },
 };

@@ -7,6 +7,7 @@ import {
   Mail,
   MessageSquareText,
   Phone,
+  Send,
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -86,8 +87,12 @@ const ContactSection = ({ className }: ContactSectionProps) => {
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
             Contact
           </p>
-          <h2 className="text-4xl font-bold text-white sm:text-5xl">{CONTACT_CONTENT.title}</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-400">{CONTACT_CONTENT.description}</p>
+          <h2 className="text-4xl font-bold text-white sm:text-5xl">
+            {CONTACT_CONTENT.title}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">
+            {CONTACT_CONTENT.description}
+          </p>
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -116,6 +121,8 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                         <Github className="mr-2 h-4 w-4" />
                       ) : action.id === "instagram" ? (
                         <Instagram className="mr-2 h-4 w-4" />
+                      ) : action.id === "telegram" ? (
+                        <Send className="mr-2 h-4 w-4" />
                       ) : (
                         <Phone className="mr-2 h-4 w-4" />
                       );
@@ -148,13 +155,17 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                   <Clock3 className="mt-0.5 h-5 w-5 text-cyan-200" />
                   <div>
                     <p className="font-semibold text-white">Fast response</p>
-                    <p className="text-sm text-slate-400">Usually within 24 hours.</p>
+                    <p className="text-sm text-slate-400">
+                      Usually within 24 hours.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MessageSquareText className="mt-0.5 h-5 w-5 text-cyan-200" />
                   <div>
-                    <p className="font-semibold text-white">Clear communication</p>
+                    <p className="font-semibold text-white">
+                      Clear communication
+                    </p>
                     <p className="text-sm text-slate-400">
                       Regular updates and transparent process.
                     </p>
@@ -175,10 +186,17 @@ const ContactSection = ({ className }: ContactSectionProps) => {
 
           <Card className="rounded-3xl border-slate-700/70 bg-slate-900/72 text-left">
             <CardContent className="p-8 sm:p-10">
-              <h3 className="text-2xl font-semibold text-white">{CONTACT_CONTENT.quickMessageTitle}</h3>
-              <p className="mt-2 text-slate-300">{CONTACT_CONTENT.quickMessageDescription}</p>
+              <h3 className="text-2xl font-semibold text-white">
+                {CONTACT_CONTENT.quickMessageTitle}
+              </h3>
+              <p className="mt-2 text-slate-300">
+                {CONTACT_CONTENT.quickMessageDescription}
+              </p>
 
-              <form className="mt-7 space-y-4" onSubmit={handleContactFormSubmit}>
+              <form
+                className="mt-7 space-y-4"
+                onSubmit={handleContactFormSubmit}
+              >
                 <div className="grid gap-4 sm:grid-cols-2">
                   <Input
                     type="text"
@@ -187,7 +205,10 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                     value={formData.name}
                     onChange={(event) => {
                       setFormStatus("idle");
-                      setFormData((prev) => ({ ...prev, name: event.target.value }));
+                      setFormData((prev) => ({
+                        ...prev,
+                        name: event.target.value,
+                      }));
                     }}
                     className="border-slate-600 bg-slate-900/80 text-white placeholder:text-slate-400 focus-visible:ring-cyan-400"
                   />
@@ -195,6 +216,8 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                     type="tel"
                     required
                     inputMode="numeric"
+                    minLength={7}
+                    maxLength={15}
                     pattern="[0-9]+"
                     placeholder={CONTACT_CONTENT.formPhonePlaceholder}
                     value={formData.phone}
@@ -213,7 +236,10 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                   value={formData.message}
                   onChange={(event) => {
                     setFormStatus("idle");
-                    setFormData((prev) => ({ ...prev, message: event.target.value }));
+                    setFormData((prev) => ({
+                      ...prev,
+                      message: event.target.value,
+                    }));
                   }}
                   className="min-h-36 border-slate-600 bg-slate-900/80 text-white placeholder:text-slate-400 focus-visible:ring-cyan-400"
                 />
@@ -252,4 +278,3 @@ const ContactSection = ({ className }: ContactSectionProps) => {
 };
 
 export default ContactSection;
-

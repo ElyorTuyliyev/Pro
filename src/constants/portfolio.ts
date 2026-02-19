@@ -145,7 +145,7 @@ export const CONTACT_CONTENT = {
   quickMessageDescription:
     "Fill out the form and your message will be sent to me on Telegram.",
   formNamePlaceholder: "Your name",
-  formPhonePlaceholder: "Your phone",
+  formPhonePlaceholder: "97-123-4567",
   formMessagePlaceholder: "Tell me about your project...",
   sendButtonLabel: "Send Message",
   sendingButtonLabel: "Sending...",

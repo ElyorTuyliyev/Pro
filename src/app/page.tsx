@@ -1,10 +1,5 @@
 import PortfolioPage from "@/components/portfolio/PortfolioPage";
-
-const siteUrl =
-  (process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com").replace(
-    /\/$/,
-    "",
-  );
+import { SITE_URL } from "@/lib/site";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -12,18 +7,18 @@ const structuredData = {
     {
       "@type": "WebSite",
       name: "Elyor Tuyliyev Portfolio",
-      url: siteUrl,
+      url: SITE_URL,
       description:
         "Web developer portfolio with React and TypeScript projects, experience, and direct contact.",
     },
     {
       "@type": "WebPage",
       name: "Elyor Tuyliyev | Web Developer Portfolio",
-      url: siteUrl,
+      url: SITE_URL,
       isPartOf: {
         "@type": "WebSite",
         name: "Elyor Tuyliyev Portfolio",
-        url: siteUrl,
+        url: SITE_URL,
       },
       description:
         "Portfolio website of Elyor Tuyliyev, software engineer focused on modern frontend development.",
@@ -34,8 +29,10 @@ const structuredData = {
       jobTitle: "Web Developer",
       description:
         "Software engineer focused on React, TypeScript, and high-performance frontend products.",
+      url: SITE_URL,
       email: "mailto:elyor.tuyliyev@gmail.com",
       telephone: "+998884848833",
+      image: `${SITE_URL}/me.jpg`,
       sameAs: [
         "https://www.linkedin.com/in/elyor-web-developer/",
         "https://github.com/ElyorTuyliyev",
