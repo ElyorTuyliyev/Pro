@@ -216,8 +216,8 @@ const ContactSection = ({ className }: ContactSectionProps) => {
                     type="tel"
                     required
                     inputMode="numeric"
-                    minLength={7}
-                    maxLength={15}
+                    minLength={9}
+                    maxLength={12}
                     pattern="[0-9]+"
                     placeholder={CONTACT_CONTENT.formPhonePlaceholder}
                     value={formData.phone}

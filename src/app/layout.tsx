@@ -5,7 +5,7 @@ import Providers from "@/app/providers";
 import { SITE_URL } from "@/lib/site";
 
 const SITE_NAME = "Elyor Tuyliyev Portfolio";
-const DEFAULT_TITLE = "Elyor Tuyliyev | Web Developer Portfolio";
+const DEFAULT_TITLE = "Elyor Tuyliyev | Portfolio";
 const DEFAULT_DESCRIPTION =
   "Elyor Tuyliyev is a web developer and software engineer building fast, responsive, and conversion-focused React + TypeScript products.";
 const GOOGLE_SITE_VERIFICATION =
