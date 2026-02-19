@@ -5,7 +5,7 @@ import Providers from "@/app/providers";
 import { SITE_URL } from "@/lib/site";
 
 const SITE_NAME = "Elyor Tuyliyev Portfolio";
-const DEFAULT_TITLE = "Elyor Tuyliyev | Portfolio";
+const DEFAULT_TITLE = "Elyor Tuyliyev";
 const DEFAULT_DESCRIPTION =
   "Elyor Tuyliyev is a web developer and software engineer building fast, responsive, and conversion-focused React + TypeScript products.";
 const GOOGLE_SITE_VERIFICATION =
@@ -52,6 +52,9 @@ export const metadata: Metadata = {
         google: GOOGLE_SITE_VERIFICATION,
       }
     : undefined,
+  other: {
+    google: "notranslate",
+  },
   manifest: "/site.webmanifest",
   icons: {
     icon: "/favicon.svg",
@@ -87,8 +90,13 @@ type RootLayoutProps = {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      translate="no"
+      className="notranslate"
+    >
+      <body className="notranslate">
         <Providers>{children}</Providers>
       </body>
     </html>
