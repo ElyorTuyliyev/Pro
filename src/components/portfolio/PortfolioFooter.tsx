@@ -3,10 +3,6 @@
 import { useEffect, useState } from "react";
 import { NAV_ITEMS, PROFILE } from "@/constants/portfolio";
 
-const COUNTER_NAMESPACE =
-  process.env.NEXT_PUBLIC_COUNTAPI_NAMESPACE || "elyor-tuyliyev-portfolio";
-const COUNTER_KEY = "site-visits";
-
 const PortfolioFooter = () => {
   const [visitCount, setVisitCount] = useState<number | null>(null);
 
@@ -15,13 +11,10 @@ const PortfolioFooter = () => {
 
     const updateVisitCount = async () => {
       try {
-        const response = await fetch(
-          `https://api.countapi.xyz/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`,
-          { cache: "no-store" },
-        );
+        const response = await fetch("/api/visits", { cache: "no-store" });
 
         if (!response.ok) {
-          throw new Error("Count API request failed");
+          throw new Error("Visits API request failed");
         }
 
         const payload = (await response.json()) as { value?: number };
@@ -29,13 +22,8 @@ const PortfolioFooter = () => {
           setVisitCount(payload.value);
         }
       } catch {
-        const localFallbackKey = "portfolio-local-visits";
-        const nextLocalCount =
-          Number(window.localStorage.getItem(localFallbackKey) || "0") + 1;
-
-        window.localStorage.setItem(localFallbackKey, String(nextLocalCount));
         if (isMounted) {
-          setVisitCount(nextLocalCount);
+          setVisitCount(null);
         }
       }
     };
