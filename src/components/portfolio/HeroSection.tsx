@@ -161,7 +161,7 @@ const HeroSection = ({ roleIndex }: HeroSectionProps) => {
               </div>
             </div>
 
-            <div className="absolute -left-7 top-10 rounded-xl border border-cyan-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
+            <div className="absolute -left-5 top-10 rounded-xl border border-cyan-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
               Fast Delivery
             </div>
             <div className="absolute -bottom-4 right-0 rounded-xl border border-amber-200/20 bg-slate-900/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100">
