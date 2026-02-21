@@ -45,7 +45,12 @@ const AboutSection = ({ className }: AboutSectionProps) => {
                       <Code className="h-6 w-6" />
                     )}
                   </div>
-                  <span className="text-sm font-semibold text-slate-500">{`0${index + 1}`}</span>
+                  <span
+                    className="text-sm  font-semibold text-slate-500"
+                    style={{
+                      fontSize: "30px",
+                    }}
+                  >{`0${index + 1}`}</span>
                 </div>
 
                 <h3 className="text-2xl font-semibold text-white">
