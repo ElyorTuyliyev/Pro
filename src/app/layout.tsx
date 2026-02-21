@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   keywords: [
+    "Elyor",
+    "Elyorjon",
     "Elyor Tuyliyev",
     "Web Developer",
     "Frontend Developer",

@@ -126,15 +126,19 @@ export const ABOUT_CONTENT = {
       title: "Certificates",
       icon: "award",
       description:
-        "Meta Front-End Developer Professional Certificate (Coursera).\nIssued: May 7, 2025.",
+        "Meta Front-End Developer Professional Certificate (Coursera).\nAI & Machine Learning Certificate.\nIssued: May 7, 2025.",
       links: [
         {
           label: "Verify on Coursera",
           href: "https://coursera.org/verify/professional-cert/GSWDKWPBDAMO",
         },
         {
-          label: "View Certificate",
+          label: "View Meta Certificate",
           href: "/Coursera.pdf",
+        },
+        {
+          label: "View AI Certificate",
+          href: "/AI.pdf",
         },
       ],
     },
