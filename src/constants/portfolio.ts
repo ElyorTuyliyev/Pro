@@ -41,7 +41,7 @@ export const PROFILE = {
   firstName: "Tuyliyev",
   lastName: "Elyor",
   footerText:
-    "(c) 2026 Tuyliyev Elyor. Crafted with React, motion, and attention to detail.",
+    "(c) 2026 Tuyliyev Elyor. Crafted with Next.js, motion, and attention to detail.",
 } as const;
 
 export const NAV_ITEMS: NavItem[] = [
